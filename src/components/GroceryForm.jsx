@@ -10,7 +10,6 @@ function GroceryForm({ onAddGrocery, categories }) {
     if (text.trim()) {
       onAddGrocery(text, selectedCategory, quantity)
       setText('')
-      setSelectedCategory('Other')
       setQuantity(1)
     }
   }
