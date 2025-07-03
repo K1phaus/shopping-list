@@ -1,28 +1,13 @@
 import GroceryItem from './GroceryItem'
 
-function GroceryList({ groceries, onToggle, onDelete, onEdit, onUpdateQuantity, categories, showCart, sortBy }) {
+function GroceryList({ groceries, onToggle, onDelete, onEdit, onUpdateQuantity, categories, categoryIcons, showCart, sortBy }) {
   if (groceries.length === 0) {
     return (
       <div className="text-center py-8">
         <div className="text-gray-400 text-6xl mb-4">🛒</div>
-        <p className="text-gray-500">Your grocery list is empty. Add some items above!</p>
+        <p className="text-gray-500">Your shopping list is empty. Add some items above!</p>
       </div>
     )
-  }
-
-  const getCategoryEmoji = (cat) => {
-    const emojis = {
-      'Produce': '🥬',
-      'Dairy': '🥛',
-      'Meat': '🥩',
-      'Bakery': '🍞',
-      'Pantry': '🥫',
-      'Frozen': '🧊',
-      'Beverages': '🥤',
-      'Snacks': '🍿',
-      'Other': '📦'
-    }
-    return emojis[cat] || '📦'
   }
 
   // Sort groceries based on sortBy
@@ -66,6 +51,7 @@ function GroceryList({ groceries, onToggle, onDelete, onEdit, onUpdateQuantity, 
               onEdit={onEdit}
               onUpdateQuantity={onUpdateQuantity}
               categories={categories}
+              categoryIcons={categoryIcons}
               showCart={true}
               showCategoryIcon={sortBy === 'alphabetical'}
             />
@@ -95,7 +81,7 @@ function GroceryList({ groceries, onToggle, onDelete, onEdit, onUpdateQuantity, 
         {sortedCategories.map(category => (
           <div key={category} className="space-y-2">
             <h3 className="text-lg font-semibold text-gray-700 flex items-center gap-2">
-              {getCategoryEmoji(category)} {category}
+              <span className="text-2xl">{categoryIcons[category] || '📦'}</span> {category}
               <span className="text-sm text-gray-500">
                 ({groupedGroceries[category].length} items)
               </span>
@@ -110,6 +96,7 @@ function GroceryList({ groceries, onToggle, onDelete, onEdit, onUpdateQuantity, 
                   onEdit={onEdit}
                   onUpdateQuantity={onUpdateQuantity}
                   categories={categories}
+                  categoryIcons={categoryIcons}
                   showCart={false}
                   showCategoryIcon={false}
                 />
@@ -132,6 +119,7 @@ function GroceryList({ groceries, onToggle, onDelete, onEdit, onUpdateQuantity, 
             onEdit={onEdit}
             onUpdateQuantity={onUpdateQuantity}
             categories={categories}
+            categoryIcons={categoryIcons}
             showCart={false}
             showCategoryIcon={true}
           />

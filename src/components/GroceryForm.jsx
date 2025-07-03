@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function GroceryForm({ onAddGrocery, categories }) {
+function GroceryForm({ onAddGrocery, categories, categoryIcons }) {
   const [text, setText] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('Other')
   const [quantity, setQuantity] = useState(1)
@@ -12,25 +12,6 @@ function GroceryForm({ onAddGrocery, categories }) {
       setText('')
       setQuantity(1)
     }
-  }
-
-  const getCategoryEmoji = (cat) => {
-    const emojis = {
-      'Produce': '🥬',
-      'Dairy': '🥛',
-      'Meat': '🥩',
-      'Bakery': '🍞',
-      'Pantry': '🥫',
-      'Frozen': '🧊',
-      'Beverages': '🥤',
-      'Snacks': '🍿',
-      'Other': '📦'
-    }
-    return emojis[cat] || '📦'
-  }
-
-  const getCategoryName = (cat) => {
-    return cat
   }
 
   return (
@@ -92,8 +73,8 @@ function GroceryForm({ onAddGrocery, categories }) {
                     : 'border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50 text-gray-600 hover:text-gray-800'
                 }`}
               >
-                <span className="text-2xl">{getCategoryEmoji(cat)}</span>
-                <span className="text-xs font-medium">{getCategoryName(cat)}</span>
+                <span className="text-2xl">{categoryIcons[cat] || '📦'}</span>
+                <span className="text-xs font-medium">{cat}</span>
               </button>
             ))}
           </div>

@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 
-function GroceryItem({ grocery, onToggle, onDelete, onEdit, onUpdateQuantity, categories, showCart, showCategoryIcon }) {
+function GroceryItem({ grocery, onToggle, onDelete, onEdit, onUpdateQuantity, categories, categoryIcons, showCart, showCategoryIcon }) {
   const [isEditing, setIsEditing] = useState(false)
   const [editText, setEditText] = useState(grocery.text)
   const [editCategory, setEditCategory] = useState(grocery.category)
@@ -35,21 +35,6 @@ function GroceryItem({ grocery, onToggle, onDelete, onEdit, onUpdateQuantity, ca
 
   const handleDoubleClick = () => {
     setIsEditing(true)
-  }
-
-  const getCategoryEmoji = (cat) => {
-    const emojis = {
-      'Produce': '🥬',
-      'Dairy': '🥛',
-      'Meat': '🥩',
-      'Bakery': '🍞',
-      'Pantry': '🥫',
-      'Frozen': '🧊',
-      'Beverages': '🥤',
-      'Snacks': '🍿',
-      'Other': '📦'
-    }
-    return emojis[cat] || '📦'
   }
 
   return (
@@ -92,7 +77,7 @@ function GroceryItem({ grocery, onToggle, onDelete, onEdit, onUpdateQuantity, ca
             >
               {categories.map(cat => (
                 <option key={cat} value={cat}>
-                  {getCategoryEmoji(cat)} {cat}
+                  {categoryIcons[cat] || '📦'} {cat}
                 </option>
               ))}
             </select>
@@ -111,7 +96,7 @@ function GroceryItem({ grocery, onToggle, onDelete, onEdit, onUpdateQuantity, ca
             </span>
             {showCategoryIcon && (
               <span className="text-lg">
-                {getCategoryEmoji(grocery.category)}
+                {categoryIcons[grocery.category] || '📦'}
               </span>
             )}
           </div>

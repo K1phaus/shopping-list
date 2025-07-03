@@ -2,18 +2,6 @@ function GroceryStats({ total, needed, purchased, totalItems, filter, onFilterCh
   return (
     <div className="mb-6">
       <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
-        <div className="flex gap-4 text-sm">
-          <div className="text-gray-600">
-            <span className="font-medium">{needed}</span> items needed
-          </div>
-          <div className="text-green-600">
-            <span className="font-medium">{purchased}</span> purchased
-          </div>
-          <div className="text-blue-600">
-            <span className="font-medium">{totalItems}</span> total items
-          </div>
-        </div>
-        
         {purchased > 0 && (
           <button
             onClick={onClearPurchased}
@@ -23,7 +11,6 @@ function GroceryStats({ total, needed, purchased, totalItems, filter, onFilterCh
           </button>
         )}
       </div>
-      
       <div className="flex justify-center">
         <div className="flex bg-gray-100 rounded-lg p-1">
           <button
