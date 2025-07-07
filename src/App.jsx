@@ -114,14 +114,14 @@ function App() {
     }
   }, [groceries, storageAvailable])
 
-  const addGrocery = (text, category = 'Other') => {
+  const addGrocery = (text, category = 'Other', quantity = 1) => {
     if (text.trim()) {
       const newGrocery = {
         id: Date.now(),
         text: text.trim(),
         category: category,
         purchased: false,
-        quantity: 1,
+        quantity: quantity,
         createdAt: new Date().toISOString()
       }
       console.log('➕ Adding new grocery:', newGrocery)

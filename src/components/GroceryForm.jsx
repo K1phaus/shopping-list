@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 function GroceryForm({ onAddGrocery, categories, categoryIcons }) {
   const [text, setText] = useState('')
-  const [selectedCategory, setSelectedCategory] = useState('Other')
+  const [selectedCategory, setSelectedCategory] = useState(categories.slice().sort()[0] || 'Other')
   const [quantity, setQuantity] = useState(1)
 
   const handleSubmit = (e) => {
@@ -11,6 +11,7 @@ function GroceryForm({ onAddGrocery, categories, categoryIcons }) {
       onAddGrocery(text, selectedCategory, quantity)
       setText('')
       setQuantity(1)
+      setSelectedCategory(categories.slice().sort()[0] || 'Other')
     }
   }
 
@@ -62,12 +63,12 @@ function GroceryForm({ onAddGrocery, categories, categoryIcons }) {
             Select Category:
           </label>
           <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
-            {categories.map(cat => (
+            {categories.slice().sort().map(cat => (
               <button
                 key={cat}
                 type="button"
                 onClick={() => setSelectedCategory(cat)}
-                className={`p-3 rounded-lg border-2 transition-all duration-200 flex flex-col items-center gap-1 ${
+                className={`p-2 w-16 h-16 rounded-lg border-2 transition-all duration-200 flex flex-col items-center gap-1 justify-center ${
                   selectedCategory === cat
                     ? 'border-green-500 bg-green-50 text-green-700 shadow-md scale-105'
                     : 'border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50 text-gray-600 hover:text-gray-800'
